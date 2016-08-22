@@ -1,4 +1,4 @@
-FROM node
+FROM mhart/alpine-node
 COPY CodeTrials .
 RUN npm install
 EXPOSE 3000
