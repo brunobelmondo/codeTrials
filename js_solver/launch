@@ -1,0 +1,1 @@
+docker run js_solver ./launch_solver "$1" "$2"

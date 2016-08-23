@@ -1,0 +1,3 @@
+#!/bin/sh
+node fileCreator.js "$1"
+node solve.js "$2"
