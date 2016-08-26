@@ -1,0 +1,3 @@
+[submodule "CodeTrials/public/ace-builds"]
+	path = CodeTrials/public/ace-builds
+	url = https://github.com/ajaxorg/ace-builds.git
