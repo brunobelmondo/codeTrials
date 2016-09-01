@@ -1,7 +1,12 @@
 doctype html
-html
+html(ng-app='codeTrialsApp')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js')
+    script(src='javascripts/codeTrialsApp.js')
+
   body
+    block header
+      h1= title
     block content
