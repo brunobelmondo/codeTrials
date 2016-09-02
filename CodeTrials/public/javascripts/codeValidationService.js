@@ -5,12 +5,17 @@ services.factory('codeValidation', function($resource) {
 
     var service = $resource('/validate/:code');
 
+    codeValidation.setFeedback = function(onFeedbackReceived) {
+        codeValidation.sendFeedback = onFeedbackReceived;
+    };
+
     codeValidation.validateCode = function(codeToTest) {
-        service.get({ code: codeToTest }).$promise.then(function(data) {
-            console.log('code validation done with succcess');
-        }, function(data) {
-            console.log('code validation done with errors');
-        });
+        service.get({ code: codeToTest }).$promise.then(function(response) {
+                codeValidation.sendFeedback(response.data);
+            },
+            function(data) {
+                console.log('code validation done with errors');
+            });
     };
 
     return codeValidation;
