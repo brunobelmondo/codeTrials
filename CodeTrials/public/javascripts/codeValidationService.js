@@ -3,7 +3,7 @@ var services = angular.module('services', ['ngResource']);
 services.factory('codeValidation', function($resource) {
     var codeValidation = {};
 
-    var service = $resource('/validate/:code');
+    var service = $resource('/validate/:inputCode', { inputCode: '@code' });
 
     codeValidation.setFeedback = function(onFeedbackReceived) {
         codeValidation.sendFeedback = onFeedbackReceived;
