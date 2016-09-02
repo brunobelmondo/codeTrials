@@ -1,7 +1,19 @@
-<body ng-controller="">
-    <button type=""></button>
-    <div id='editor' class='main'>var solution = function(numbers) { return Math.max.apply(null, numbers); }; exports.solution = solution;
-    </div>
-    <script src='/ace-builds/src-noconflict/ace.js'></script>
-    <script src='javascripts/codeEditor.js'></script>
+<body ng-app='codeTrialsApp' ng-controller='editorController'>
+    <div class='editor' ui-ace="{
+                                    useWrapMode : true,
+                                    showGutter: false,
+                                    theme:'monokai',
+                                    mode: 'javascript',
+                                    firstLineNumber: 5,
+                                    onLoad: aceLoaded
+                                    }" ng-model='code'></div>
+    <button ng-click='submitCode()'>Submit Code</button>
+
+    <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js'></script>
+    <script type="text/javascript" src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.js'></script>
+    <script type="text/javascript" src='ace-builds/src-noconflict/ace.js'></script>
+    <script type="text/javascript" src="javascripts/ui-ace.js"></script>
+    <script type="text/javascript" src='javascripts/codeTrialsApp.js'></script>
+    <script type="text/javascript" src='javascripts/editorController.js'></script>
+    <script type="text/javascript" src='javascripts/codeValidationService.js'></script>
 </body>

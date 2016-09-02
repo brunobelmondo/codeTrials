@@ -1,1 +1,1 @@
-angular.module('codeTrialsApp', []);
+angular.module('codeTrialsApp', ['ui.ace', 'services']);
