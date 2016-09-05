@@ -10,6 +10,7 @@ angular.module('codeTrialsApp').controller('editorController', ['$scope', 'codeV
     };
 
     $scope.submitCode = function() {
+        $scope.codeValidationResult = '';
         codeValidation.validateCode(JSON.stringify($scope.code));
     };
 
