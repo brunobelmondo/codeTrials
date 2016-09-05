@@ -3,14 +3,15 @@ var services = angular.module('services', ['ngResource']);
 services.factory('codeValidation', function($resource) {
     var codeValidation = {};
 
-    var service = $resource('/validate/:inputCode', { inputCode: '@code' });
+    var service = $resource('/validate/:inputCode/:test', { inputCode: '@code', test: '@testSuite' });
 
     codeValidation.setFeedback = function(onFeedbackReceived) {
         codeValidation.sendFeedback = onFeedbackReceived;
     };
 
     codeValidation.validateCode = function(codeToTest) {
-        service.get({ code: codeToTest }).$promise.then(function(response) {
+        var testData = JSON.stringify('[1, 2, 3]');
+        service.get({ code: codeToTest, testSuite: testData }).$promise.then(function(response) {
                 codeValidation.sendFeedback(response.data);
             },
             function(data) {

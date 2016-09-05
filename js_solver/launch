@@ -11,8 +11,6 @@ test_executed="$2"
 container=$(docker run -d "$image" ./launch_solver "$code_proposed" "$test_executed")
 code=$(timeout "$timeout" docker wait "$container" || true)
 
-#docker kill $container &> /dev/null
-
 if [ -z "$code" ]; then
     echo timeout
 else

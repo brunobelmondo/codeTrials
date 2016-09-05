@@ -5,12 +5,14 @@ var exec = require('child_process').exec;
 
 router.get('/*', function(req, res, next) {
     var answer = { data: 'nothing' };
-    var testParameters = '[1,2,3]';
+    var testParameters = '"[1,2,3]"';
+    //req.param('testSuite');
     var testCode = req.param('code');
-    console.log('received code :' + testCode);
+    console.log('received code:' + testCode);
+    console.log('received tests:' + testParameters);
 
     exec('../js_solver/launch ' + testCode + ' ' + testParameters, function(error, stdout, stderr) {
-        answer = { data: stdout + stderr };
+        answer = { data: 'Tested code with:' + testParameters + '. Got following result:\n' + stdout + stderr };
         if (error !== null) {
             console.log('exec error: ', error);
             answer = { data: 'execution error' };
