@@ -8,15 +8,12 @@ router.get('/*', function(req, res, next) {
     var testParameters = '[1,2,3]';
     var testCode = req.param('code');
     console.log('received code :' + testCode);
-    //JSON.stringify('var solution = function(numbers) {return Math.max.apply(null, numbers);};exports.solution = solution;');
 
     exec('../js_solver/launch ' + testCode + ' ' + testParameters, function(error, stdout, stderr) {
-        console.log('stdout: ', stdout);
-        console.log('stderr: ', stderr);
-        answer = { data: stdout };
+        answer = { data: stdout + stderr };
         if (error !== null) {
             console.log('exec error: ', error);
-            answer = { data: stderr };
+            answer = { data: 'execution error' };
         }
 
         res.type('application/json');
