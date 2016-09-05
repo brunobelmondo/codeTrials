@@ -1,1 +1,23 @@
-docker run js_solver ./launch_solver "$1" "$2"
+#!/bin/bash
+
+#close if return code is not 0
+set -e
+
+timeout=10s
+image=js_solver
+code_proposed="$1"
+test_executed="$2"
+
+container=$(docker run -d "$image" ./launch_solver "$code_proposed" "$test_executed")
+code=$(timeout "$timeout" docker wait "$container" || true)
+
+#docker kill $container &> /dev/null
+
+if [ -z "$code" ]; then
+    echo timeout
+else
+    echo $(docker logs $container)
+fi
+
+docker rm -f  $container &> /dev/null
+
