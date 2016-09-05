@@ -5,8 +5,7 @@ var exec = require('child_process').exec;
 
 router.get('/*', function(req, res, next) {
     var answer = { data: 'nothing' };
-    var testParameters = '"[1,2,3]"';
-    //req.param('testSuite');
+    var testParameters = req.param('testSuite');
     var testCode = req.param('code');
     console.log('received code:' + testCode);
     console.log('received tests:' + testParameters);
